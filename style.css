@@ -1,0 +1,25 @@
+/*
+Theme Name: ColorMag-Child
+Template: colormag
+Theme URI: https://themegrill.com/themes/colormag/
+Author: Dmitriy KOvalev
+Author URI: https://www.fl.ru/users/kacevnik/
+Description: ColorMag-Child это отличная адаптивная дочерняя WordPress тема журнального стиля. Подходит для новостей, газет, журналов, издательства, бизнеса и других типов сайтов.
+Version: 1.0.0
+License: GNU General Public License, version 3 (GPLv3)
+License URI: http://www.gnu.org/licenses/gpl-3.0.txt
+Tags: one-column, two-columns, right-sidebar, left-sidebar, flexible-header, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, featured-images, theme-options, post-formats, footer-widgets, blog, e-commerce, news, rtl-language-support
+Text Domain: colormag
+
+Resetting and rebuilding styles have been helped along thanks to the fine work of
+Eric Meyer http://meyerweb.com/eric/tools/css/reset/index.html
+along with Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
+and Blueprint http://www.blueprintcss.org/
+*/
+/*==========  Gray colors  ==========*/
+/*=====  Light colors  ======*/
+/*==========  Brand-colors  ==========*/
+/*==========  social links colors  ==========*/
+/* =Reset
+-------------------------------------------------------------- */
+@import url("../colormag/style.css");
