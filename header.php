@@ -84,7 +84,46 @@
                     $cat_id = $category_id->term_id;
                     if($cat_id){
                         $ancestors = get_ancestors( $cat_id, 'category' );
+                        echo '<pre>';
+                        print_r($ancestors);
+                        echo '</pre>';
+                        echo $cat_id;
                         if(in_array('37', $ancestors)){
+                            if(count($ancestors)  >= 2 ){
+                                $categories = get_categories( array(
+                                    'type'         => 'post',
+                                    'child_of'     => 0,
+                                    'parent'       => $ancestors[0],
+                                    'orderby'      => 'name',
+                                    'order'        => 'ASC',
+                                    'hide_empty'   => 0,
+                                    'hierarchical' => 1,
+                                    'exclude'      => '',
+                                    'include'      => '',
+                                    'number'       => 0,
+                                    'taxonomy'     => 'category',
+                                    'pad_counts'   => false,
+                                ) );
+
+                                $title = "Модели ". get_cat_name( $ancestors[0] );
+                            }else{
+                            $categories = get_categories( array(
+                                'type'         => 'post',
+                                'child_of'     => 0,
+                                'parent'       => $cat_id,
+                                'orderby'      => 'name',
+                                'order'        => 'ASC',
+                                'hide_empty'   => 0,
+                                'hierarchical' => 1,
+                                'exclude'      => '',
+                                'include'      => '',
+                                'number'       => 0,
+                                'taxonomy'     => 'category',
+                                'pad_counts'   => false,
+                            ) );
+
+                            $title = "Модели ". get_cat_name( $cat_id );
+                            }
 
                         }else{
                             $categories = get_categories( array(
@@ -104,9 +143,6 @@
 
                             $title = "Марки автомобилей";
                         }
-                    // echo '<pre>';
-                    // print_r($ancestors);
-                    // echo '</pre>';
                     }else{
                         $categories = get_categories( array(
                             'type'         => 'post',
@@ -133,12 +169,13 @@
                         echo "<h2>$title</h2>";
                         $count_cat = count($categories);
                         $count_per_colm = floor($count_cat/4);
+                        if($count_per_colm == 0){$count_per_colm =1;}
                         $count_cell = $count_cat%4;
                         $i = 0;
                         $col = 1;
                         foreach ($categories as $cat_item) {
-                            if($i == 0){echo '<span style="width: 25%; float: left; display: block;">';}
-                            echo $cat_item->name;
+                            if($i == 0){echo '<span style="width: 25%; float: left; display: block;" class="colum_list">';}
+                            echo '<a href="'.get_category_link( $cat_item->term_id ).'">'.$cat_item->name.'</a>';
                             $i++;
                             if($i >= $count_per_colm){
                                 if($count_cell > 0 && $flag == 0){
