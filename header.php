@@ -79,7 +79,6 @@
     <div id="main" class="clearfix">
         <div class="inner-wrap clearfix">
             <div class="automodel-list">
-                <div class="automodel-list-show">
                 <?php
                     $category_id = get_queried_object();
                     $cat_id = $category_id->term_id;
@@ -159,8 +158,10 @@
                         $title = "Марки автомобилей";
                     }
                     if($categories){
-                        echo "<h2>$title</h2>";
                         $count_cat = count($categories);
+                        if($count_cat >= 16){$hide = " hide_list"; }
+                        echo "<h2>$title</h2>";
+                        echo '<div class="automodel-list-show'.$hide.'">';
                         $count_per_colm = floor($count_cat/4);
                         if($count_per_colm == 0){$count_per_colm =1;}
                         $count_cell = $count_cat%4;
@@ -181,10 +182,11 @@
                                     $flag = 0;
                                 }
                             }
-                            // $count_more++;
-                            // if($count_more == 16){echo '</div><a href="#" class="more_button">Показать еще ...</a><div class="automodel-list-hide">';}
                         }
                     }
+                    echo "</div>";
                 ?>
+                <div class="more_show">
+                    <a href="#" class="more_button">Показать еще ...</a>
                 </div>
             </div>
