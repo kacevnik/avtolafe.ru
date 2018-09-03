@@ -23,3 +23,55 @@ and Blueprint http://www.blueprintcss.org/
 /* =Reset
 -------------------------------------------------------------- */
 @import url("../colormag/style.css");
+
+.automodel-list{
+	margin-bottom: 20px;
+}
+
+.automodel-list-show{
+	overflow: hidden;
+}
+
+.automodel-list-show h2{
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.automodel-list-show a{
+	display: block;
+}
+
+.colum_list{
+	width: 25%;
+	float: left;
+	display: block;
+}
+
+.more_button{
+	width: 200px;
+    background: #ccc;
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    color: #fff;
+}
+
+.more_button:hover{
+    background: #b1afaf;
+}
+
+@media (max-width: 767px){
+	.colum_list{
+		width: 50%;
+	}
+}
+
+
+
+
+
+

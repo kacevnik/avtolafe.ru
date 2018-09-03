@@ -78,17 +78,13 @@
 
     <div id="main" class="clearfix">
         <div class="inner-wrap clearfix">
-            <div class="automodel-list" style="overflow: hidden;">
+            <div class="automodel-list">
                 <div class="automodel-list-show">
                 <?php
                     $category_id = get_queried_object();
                     $cat_id = $category_id->term_id;
                     if($cat_id){
                         $ancestors = get_ancestors( $cat_id, 'category' );
-                        echo '<pre>';
-                        print_r($ancestors);
-                        echo '</pre>';
-                        echo $cat_id;
                         if(in_array('37', $ancestors)){
                             if(count($ancestors)  >= 2 ){
                                 $categories = get_categories( array(
@@ -162,10 +158,6 @@
 
                         $title = "Марки автомобилей";
                     }
-
-                    // echo '<pre>';
-                    // print_r($categories);
-                    // echo '</pre>';
                     if($categories){
                         echo "<h2>$title</h2>";
                         $count_cat = count($categories);
@@ -176,7 +168,7 @@
                         $col = 1;
                         $count_more = 0;
                         foreach ($categories as $cat_item) {
-                            if($i == 0){echo '<span style="width: 25%; float: left; display: block;" class="colum_list">';}
+                            if($i == 0){echo '<span class="colum_list">';}
                             echo '<a href="'.get_category_link( $cat_item->term_id ).'">'.$cat_item->name.'</a>';
                             $i++;
                             if($i >= $count_per_colm){
@@ -189,8 +181,8 @@
                                     $flag = 0;
                                 }
                             }
-                            $count_more++;
-                            if($count_more == 16){echo '</div><a href="#">Показать еще ...</a><div class="automodel-list-hide">';}
+                            // $count_more++;
+                            // if($count_more == 16){echo '</div><a href="#" class="more_button">Показать еще ...</a><div class="automodel-list-hide">';}
                         }
                     }
                 ?>
