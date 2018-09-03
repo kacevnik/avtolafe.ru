@@ -82,9 +82,31 @@
                 <?php
                     $category_id = get_queried_object();
                     $cat_id = $category_id->term_id;
-                    echo $cat_id;
                     if($cat_id){
+                        $ancestors = get_ancestors( $cat_id, 'category' );
+                        if(in_array('37', $ancestors)){
 
+                        }else{
+                            $categories = get_categories( array(
+                                'type'         => 'post',
+                                'child_of'     => 0,
+                                'parent'       => 37,
+                                'orderby'      => 'name',
+                                'order'        => 'ASC',
+                                'hide_empty'   => 0,
+                                'hierarchical' => 1,
+                                'exclude'      => '',
+                                'include'      => '',
+                                'number'       => 0,
+                                'taxonomy'     => 'category',
+                                'pad_counts'   => false,
+                            ) );
+
+                            $title = "Марки автомобилей";
+                        }
+                    // echo '<pre>';
+                    // print_r($ancestors);
+                    // echo '</pre>';
                     }else{
                         $categories = get_categories( array(
                             'type'         => 'post',
@@ -107,24 +129,26 @@
                     // echo '<pre>';
                     // print_r($categories);
                     // echo '</pre>';
-                    echo "<h2>$title</h2>";
-                    $count_cat = count($categories);
-                    $count_per_colm = floor($count_cat/4);
-                    $count_cell = $count_cat%4;
-                    $i = 0;
-                    $col = 1;
-                    foreach ($categories as $cat_item) {
-                        if($i == 0){echo '<span style="width: 25%; float: left; display: block;">';}
-                        echo $cat_item->name;
-                        $i++;
-                        if($i >= $count_per_colm){
-                            if($count_cell > 0 && $flag == 0){
-                                $count_cell--;
-                                $flag = 1;
-                            }else{
-                                echo '</span>';
-                                $i = 0;
-                                $flag = 0;
+                    if($categories){
+                        echo "<h2>$title</h2>";
+                        $count_cat = count($categories);
+                        $count_per_colm = floor($count_cat/4);
+                        $count_cell = $count_cat%4;
+                        $i = 0;
+                        $col = 1;
+                        foreach ($categories as $cat_item) {
+                            if($i == 0){echo '<span style="width: 25%; float: left; display: block;">';}
+                            echo $cat_item->name;
+                            $i++;
+                            if($i >= $count_per_colm){
+                                if($count_cell > 0 && $flag == 0){
+                                    $count_cell--;
+                                    $flag = 1;
+                                }else{
+                                    echo '</span>';
+                                    $i = 0;
+                                    $flag = 0;
+                                }
                             }
                         }
                     }
