@@ -79,6 +79,7 @@
     <div id="main" class="clearfix">
         <div class="inner-wrap clearfix">
             <div class="automodel-list" style="overflow: hidden;">
+                <div class="automodel-list-show">
                 <?php
                     $category_id = get_queried_object();
                     $cat_id = $category_id->term_id;
@@ -173,6 +174,7 @@
                         $count_cell = $count_cat%4;
                         $i = 0;
                         $col = 1;
+                        $count_more = 0;
                         foreach ($categories as $cat_item) {
                             if($i == 0){echo '<span style="width: 25%; float: left; display: block;" class="colum_list">';}
                             echo '<a href="'.get_category_link( $cat_item->term_id ).'">'.$cat_item->name.'</a>';
@@ -187,7 +189,10 @@
                                     $flag = 0;
                                 }
                             }
+                            $count_more++;
+                            if($count_more == 16){echo '</div><a href="#">Показать еще ...</a><div class="automodel-list-hide">';}
                         }
                     }
                 ?>
+                </div>
             </div>
